@@ -61,5 +61,17 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+    
+    public int calculateOrderTotal(List<String> itemNames) throws itemNotFoundException {
+    int orderTotal = 0;
+    for (String itemName : itemNames) {
+        Item item = findItemByName(itemName);
+        if (item == null) {
+            throw new itemNotFoundException(itemName);
+        }
+        orderTotal += item.getPrice();
+    }
+    return orderTotal;
+}
 
 }

@@ -70,4 +70,18 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    
+    @Test
+public void calculateOrderTotal_shouldReturnCorrectTotal_whenGivenListOfItemNames() throws itemNotFoundException {
+    Restaurant restaurant = new Restaurant("Test Restaurant", "Test Location", LocalTime.of(9, 0), LocalTime.of(18, 0));
+    restaurant.addToMenu("Item A", 100);
+    restaurant.addToMenu("Item B", 200);
+    restaurant.addToMenu("Item C", 500);
+    List<String> itemNames = new ArrayList<String>();
+    itemNames.add("Item A");
+    itemNames.add("Item B");
+    itemNames.add("Item D");
+    int orderTotal = restaurant.calculateOrderTotal(itemNames);
+    assertEquals(600, orderTotal);
+}
 }
